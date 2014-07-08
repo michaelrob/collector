@@ -29,5 +29,4 @@ else
   $path | grep "RequestorID ID=\"$1" | egrep "HotelAvailNotif|HotelRateAmountNotif" | sort | uniq | wc -l
   echo -e "\nThe number of inventory updates received for $1 in the last few weeks:\n"
   $oldPath | grep "RequestorID ID=\"$1" | egrep "HotelAvailNotif|HotelRateAmountNotif" | sort | uniq | wc -l
-
 fi
