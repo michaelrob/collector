@@ -1,5 +1,5 @@
 #!/bin/bash
-# To run this script enter the Requester ID of the PMS in question. This will then throw out the last inventory update that we received and the how many we have received
+# To run this script enter the Requester ID of the PMS in question. This will then output the last inventory update that we received and the how many we have received
 
 path="cat /usr/local/siteminder/var/log/pmsxchangev2-access.*"
 oldPath="bzcat /usr/local/siteminder/var/log/pmsxchangev2-access.log.****-**-**.bz2"
