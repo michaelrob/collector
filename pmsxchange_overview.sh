@@ -9,5 +9,8 @@ oldResults=$(bzegrep -Ho 'RequestorID ID="(.{1,20})" Type=' /usr/local/siteminde
 
 output=$(echo "$results" && echo "$oldResults")
 
+echo -e "${output}" | sort -r -t\, -k2 | uniq -s 11
+
+# sends output to CSV
 csv=$(echo "${output}" | sort -r -t\, -k2 | uniq -s 11)
 echo "$csv" | sort -t\, -k2 > pmsxchange.csv

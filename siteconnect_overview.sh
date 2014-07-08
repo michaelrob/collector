@@ -13,5 +13,8 @@ oldComms=$(bzegrep -Ho 'siteconnect-(.{1,3}).*RESPONSE' /usr/local/siteminder/va
 
 output=$(echo "$access" && echo "$oldAccess" && echo "$comms" && echo "$oldComms")
 
+echo -e "${output}" | sort -r -t\, -k2 | uniq -s 11
+
+# sends output to CSV
 csv=$(echo "${output}" | sort -r -t\, -k2 | uniq -s 11)
 echo "$csv" | sort -t\, -k2 > siteconnect.csv
