@@ -10,7 +10,7 @@ oldUpdateCount=$($oldPath | grep "RequestorID ID=\"$1" | egrep "HotelAvailNotif|
 if [ -z "$updateCount" ]
 then
   echo -e "There wass no inventory sent to us by $1 over the last two days\n"
-  if [ -z "$oldUpdateCount"]
+  if [ -z "$oldUpdateCount" ]
   then
     echo -e "There was no inventory sent to us by $1 over the last few weeks\n"
   else
@@ -24,9 +24,9 @@ else
   lastUpdate=$(echo $updateCount | rev | cut -c '-23' | rev)
   token=$($path | grep "$lastUpdate" | cut -c '58-69')
   $path | grep $token
-
-  echo -e "\nThe number of inventory updates received for $1 in the last two days:\n"
-  $path | grep "RequestorID ID=\"$1" | egrep "HotelAvailNotif|HotelRateAmountNotif" | sort | uniq | wc -l
-  echo -e "\nThe number of inventory updates received for $1 in the last few weeks:\n"
-  $oldPath | grep "RequestorID ID=\"$1" | egrep "HotelAvailNotif|HotelRateAmountNotif" | sort | uniq | wc -l
 fi
+
+echo -e "\nThe number of inventory updates received for $1 in the last two days:\n"
+$path | grep "RequestorID ID=\"$1" | egrep "HotelAvailNotif|HotelRateAmountNotif" | sort | uniq | wc -l
+echo -e "\nThe number of inventory updates received for $1 in the last few weeks:\n"
+$oldPath | grep "RequestorID ID=\"$1" | egrep "HotelAvailNotif|HotelRateAmountNotif" | sort | uniq | wc -l
