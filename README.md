@@ -3,6 +3,10 @@ Collector
 
 A short description of each script is below.
 
+To run from your local machine:
+
+ssh <user>@<tpi> -p222 'bash -s' < <script_name>.sh
+
 ----------------------------------
 
 pmsXchange
