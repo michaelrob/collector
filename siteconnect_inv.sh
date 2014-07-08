@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script takes a siteconnect requester ID and shows the last update request and response for this channel
+# This script takes a siteConnect requester ID and shows the last update request and response for this channel
 
 path="cat /usr/local/siteminder/var/log/siteconnect-comms.log"
 oldpath="bzcat /usr/local/siteminder/var/log/siteconnect-comms.log.****-**-**.bz2"

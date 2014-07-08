@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script takes a siteconnect requester ID and throws out the last reservation request and response
+# This script takes a siteConnect requester ID and throws out the last reservation request and response
 # sent to us by the channel. It then makes a list to show how many they have sent us over the last few weeks.
 
 echo -e "Today and yesterday\n"
