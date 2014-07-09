@@ -4,7 +4,12 @@
 path="cat /usr/local/siteminder/var/log/pmsxchangev2-access.*"
 oldPath="bzcat /usr/local/siteminder/var/log/pmsxchangev2-access.log.****-**-**.bz2"
 
+echo -e "Finding new dates...\n"
+
 updateCount=$($path | grep "RequestorID ID=\"$1" | egrep "HotelAvailNotif|HotelRateAmountNotif" | cut -c '1-23' | sort | uniq)
+
+echo -e "Finding old dates...\n"
+
 oldUpdateCount=$($oldPath | grep "RequestorID ID=\"$1" | egrep "HotelAvailNotif|HotelRateAmountNotif" | cut -c '1-23' | sort | uniq)
 
 if [ -z "$updateCount" ]

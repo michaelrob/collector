@@ -2,7 +2,7 @@
 # This script takes a siteConnect requester ID and throws out the last reservation request and response
 # sent to us by the channel. It then makes a list to show how many they have sent us over the last few weeks.
 
-echo -e "Today and yesterday\n"
+echo -e "Finding reservations from today and yesterday....\n"
 
 path="cat /usr/local/siteminder/var/log/siteconnect-access.*"
 
@@ -14,8 +14,8 @@ then
 
   echo -e "\n============================\n"
 
-  echo -e "Before to today \n"
-
+  echo -e "Finding reservations before to today...\n"
+  
   oldpath="bzcat /usr/local/siteminder/var/log/siteconnect-access.log.****-**-**.bz2"
 
   oldlast=$($oldpath | grep $1 | cut -c '01-23' | sort | uniq -c)

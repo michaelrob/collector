@@ -1,6 +1,8 @@
 #!/bin/bash
 # This script takes a siteConnect requester ID and shows the last update request and response for this channel
 
+echo -e "Finding updates from today and yesterday...\n"
+
 path="cat /usr/local/siteminder/var/log/siteconnect-comms.log"
 oldpath="bzcat /usr/local/siteminder/var/log/siteconnect-comms.log.****-**-**.bz2"
 
@@ -13,6 +15,8 @@ else
   #lastupdate=$(echo $updateCount | cut -c '1-23')
   $path | grep "$lastupdate"
 fi
+
+echo -e "Finding updates from before yesterday...\n"
 
 oldUpdateCount=$($oldpath | grep "siteconnect-$1-inventory" | grep "RESPONSE" | cut -c '01-23')
 

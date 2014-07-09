@@ -17,7 +17,7 @@ pmsxchange_updates - takes a requester ID, outputs the last update sent to us an
 
 to use:
 
-./pmsxchange_updates <pms_requestor_id>
+./pmsxchange_updates.sh <pms_requestor_id>
 
 ----------------------------------
 
@@ -29,10 +29,10 @@ siteconnect_inv - takes a requester ID, outputs the last inventory request and r
 
 to use:
 
-./siteconnect_inv <siteconnect_requestor_id>
+./siteconnect_inv.sh <siteconnect_requestor_id>
 
 siteconnect_res - takes a requester ID, outputs the last reservations request and response to this partner.
 
 to use:
 
-./pmsxchange_updates <siteconnect_requestor_id>
+./pmsxchange_updates.sh <siteconnect_requestor_id>
