@@ -5,33 +5,10 @@
 path="cat /usr/local/siteminder/var/log/pmsxchangev2-access.*"
 oldPath="bzcat /usr/local/siteminder/var/log/pmsxchangev2-access.log.****-**-**.bz2"
 
-echo -e "Counting update requests...\n"
+echo -e "Counting update requests for $1...\n"
 
-requestCount=$($path | grep "RequestorID ID=\"$1" | grep "HotelReadRequest" | cut -c '1-23')
-oldRequestCount=$($oldPath | grep "RequestorID ID=\"$1" | grep "HotelReadRequest" | cut -c '1-23')
+requesterUsername=$($path | grep "RequestorID ID=\"$1" | grep "HotelReadRequest" | egrep -o "Username>(.{1,20})<" | sed 's/Username>//' | sed 's/<//'
+requestCount=$($path | grep "RequestorID ID=\"$1" | grep "HotelReadRequest" | cut -c '1-23' | wc -l)
+reservationResponse=$($path | grep "Username>" | grep "HotelNotifReport")
 
-if [ -z "$requestCount" ]
-then
-  echo -e "There were no reservation requests sent to us by $1 over the last two days\n"
-  if [ -z "$oldURequestCount" ]
-  then
-    echo -e "There were no reservation requests sent to us by $1 over the last few weeks\n"
-  else
-    echo -e "stuff to come..."
-    #echo -e "The last update that we received for $1 was:\n"
-    #oldLastUpdate=$(echo $oldUpdateCount | rev | cut -c '-23' | rev)
-    #oldToken=$($oldPath | grep "$oldLastUpdate" | cut -c '58-69')
-    #$oldPath | grep $oldToken
-  fi
-else
-  echo -e "Today and yesterday $1 sent us \n"
-  echo $requestCount | wc -l
-  #lastUpdate=$(echo $updateCount | rev | cut -c '-23' | rev)
-  #token=$($path | grep "$lastUpdate" | cut -c '58-69')
-  #$path | grep $token
-fi
-
-#echo -e "\nThe number of inventory updates received for $1 in the last two days:\n"
-#$path | grep "RequestorID ID=\"$1" | egrep "HotelAvailNotif|HotelRateAmountNotif" | sort | uniq | wc -l
-#echo -e "\nThe number of inventory updates received for $1 in the last few weeks:\n"
-#$oldPath | grep "RequestorID ID=\"$1" | egrep "HotelAvailNotif|HotelRateAmountNotif" | sort | uniq | wc -l
+echo -e "Today and yesterday $1 sent us ${requestCount} reservation requests\n"
