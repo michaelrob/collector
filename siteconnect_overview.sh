@@ -1,11 +1,17 @@
 #!/bin/bash
 # No input needed, just run this script as is and it will spit out all of the requster IDs that have been sent to us
 
-echo "Collecting partners from recent logs...\n"
-
 today=$(date '+20%y-%m-%d')
 
-while getopts ":ra" opt; do
+usage() {
+  echo "Usage\n"
+  echo "Siteconnect_overview displays the requestorID from partners with recent activity in our system.\n"
+  echo "Options:\n"
+  echo "-r, displays siteconnect partners with recent activity (usually from today and yesterday)\n"
+  echo "-a, displays siteconnect partners with activity in our aged logs (usually longer than two days ago)\n"
+}
+
+while getopts "rah" opt; do
   case $opt in
     r)
       echo "Collecting partners who have requested inventory..."
@@ -41,9 +47,13 @@ while getopts ":ra" opt; do
       echo "Inventory\n=================================\n"
       echo "${oldComms}" | sort -t\, -k2 | uniq -s 11
     ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      exit 1
+    h)
+      usage
+      exit
+    ;;
+    ?)
+      usage
+      exit
     ;;
   esac
 done
