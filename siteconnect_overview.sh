@@ -14,7 +14,7 @@ usage() {
 while getopts "rah" opt; do
   case $opt in
     r)
-      echo "Collecting partners who have requested inventory..."
+      echo "Collecting partners who have responded to inventory requests..."
 
       comms=$(egrep -Ho 'siteconnect-(.{1,3}).*RESPONSE' /usr/local/siteminder/var/log/siteconnect-comms.* | sort -t: -k2 | uniq | sed "s/siteconnect-comms.log:/$today,/" | sed 's/siteconnect-//' | sed 's/comms.log.//' | sed 's/:siteconnect-/,/' | sed 's/\/usr\/local\/siteminder\/var\/log\///' | sed -e 's/-inventoryJob-[^>]*- \[RESPONSE//')
 
