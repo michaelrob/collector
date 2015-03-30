@@ -7,7 +7,7 @@ oldPath="bzcat /usr/local/siteminder/var/log/pmsxchangev2-access.log.****-**-**.
 
 echo -e "Counting update requests for $1...\n"
 
-requesterUsername=$($path | grep "RequestorID ID=\"$1" | grep "HotelReadRequest" | egrep -o "Username>(.{1,20})<" | sed 's/Username>//' | sed 's/<//'
+requesterUsername=$($path | grep "RequestorID ID=\"$1" | grep "HotelReadRequest" | egrep -o "Username>(.{1,20})<" | sed 's/Username>//' | sed 's/<//')
 requestCount=$($path | grep "RequestorID ID=\"$1" | grep "HotelReadRequest" | cut -c '1-23' | wc -l)
 reservationResponse=$($path | grep "Username>" | grep "HotelNotifReport")
 

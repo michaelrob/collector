@@ -51,7 +51,7 @@ while getopts "rah" opt; do
       usage
       exit
     ;;
-    ?)
+    $1)
       usage
       exit
     ;;
